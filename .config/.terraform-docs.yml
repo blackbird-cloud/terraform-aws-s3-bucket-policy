@@ -1,0 +1,37 @@
+formatter: "markdown"
+
+header-from: ./.config/header.md
+footer-from: ./.config/footer.md
+
+output:
+  file: ./README.md
+  mode: replace
+  template: |-
+    {{ .Content }}
+
+sections:
+  hide:
+    - modules
+
+content: |-
+  {{ .Header }}
+
+  # AWS S3 bucket policy module.
+  A Terraform module which helps you configure an access policy for your S3 bucket. Read [this](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-policies.html) page for more information.
+
+  ## Example
+  ```hcl
+  {{ include "./example/main.tf" }}
+  ```
+
+  {{ .Requirements }}
+
+  {{ .Providers }}
+
+  {{ .Resources }}
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
+
+  {{ .Footer }}

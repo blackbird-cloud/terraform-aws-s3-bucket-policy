@@ -1,18 +1,51 @@
+[![blackbird-logo](https://raw.githubusercontent.com/blackbird-cloud/terraform-module-template/main/.config/logo_simple.png)](https://www.blackbird.cloud)
+
+# AWS S3 bucket policy module.
+A Terraform module which helps you configure an access policy for your S3 bucket. Read [this](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-policies.html) page for more information.
+
+## Example
+```hcl
+data "aws_caller_identity" "current" {}
+
+module "s3_bucket_policy" {
+  source  = "blackbird-cloud/s3-bucket-policy/aws"
+  version = "~> 0"
+
+  s3_bucket_id = "mybucketid"
+  policy       = <<EOF
+  {
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+        "Sid": "Allow source account access to the bucket",
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
+        },
+        "Action": "s3:*",
+        "Resource": [
+          "arn:aws:s3:::mybucketid",
+          "arn:aws:s3:::mybucketid/*"
+        ]
+    }
+  ]
+}
+  EOF
+}
+```
+
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.56.0 |
-
-## Modules
-
-No modules.
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.58.0 |
 
 ## Resources
 
@@ -39,4 +72,16 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_policy"></a> [policy](#output\_policy) | The applied S3 bucket policy. |
+
+## About
+
+We are [Blackbird Cloud](https://blackbird.cloud), Amsterdam based cloud consultancy, and cloud management service provider. We help companies build secure, cost efficient, and scale-able solutions.
+
+Checkout our other :point\_right: [terraform modules](https://registry.terraform.io/namespaces/blackbird-cloud)
+
+## Copyright
+
+Copyright © 2017-2023 [Blackbird Cloud](https://www.blackbird.cloud)
