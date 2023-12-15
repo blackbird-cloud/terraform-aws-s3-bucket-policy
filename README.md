@@ -66,8 +66,10 @@ module "s3_bucket_policy" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_attach_deny_insecure_transport_policy"></a> [attach\_deny\_insecure\_transport\_policy](#input\_attach\_deny\_insecure\_transport\_policy) | Attach a policy that will deny requests that have no secure transport. | `bool` | `true` | no |
 | <a name="input_attach_elb_log_delivery_policy"></a> [attach\_elb\_log\_delivery\_policy](#input\_attach\_elb\_log\_delivery\_policy) | attach\_elb\_log\_delivery\_policy | `bool` | `false` | no |
 | <a name="input_attach_lb_log_delivery_policy"></a> [attach\_lb\_log\_delivery\_policy](#input\_attach\_lb\_log\_delivery\_policy) | attach\_lb\_log\_delivery\_policy | `bool` | `false` | no |
+| <a name="input_attach_require_latest_tls_policy"></a> [attach\_require\_latest\_tls\_policy](#input\_attach\_require\_latest\_tls\_policy) | Attach a policy that will deny requests that use a TLS version lower then 1.2. | `bool` | `true` | no |
 | <a name="input_policy"></a> [policy](#input\_policy) | The fully-formed AWS policy as JSON for the S3 bucket access policy | `string` | `null` | no |
 | <a name="input_s3_bucket_id"></a> [s3\_bucket\_id](#input\_s3\_bucket\_id) | The name of the bucket. | `string` | n/a | yes |
 

@@ -108,11 +108,11 @@ data "aws_iam_policy_document" "deny_insecure_transport" {
 
 data "aws_iam_policy_document" "combined" {
   source_policy_documents = compact([
-    data.aws_iam_policy_document.require_latest_tls.json,
-    data.aws_iam_policy_document.deny_insecure_transport.json,
-    var.policy,
+    var.attach_require_latest_tls_policy ? data.aws_iam_policy_document.require_latest_tls.json : "",
+    var.attach_deny_insecure_transport_policy ? data.aws_iam_policy_document.deny_insecure_transport.json : "",
     var.attach_elb_log_delivery_policy ? data.aws_iam_policy_document.elb_log_delivery[0].json : "",
     var.attach_lb_log_delivery_policy ? data.aws_iam_policy_document.lb_log_delivery[0].json : "",
+    var.policy,
   ])
 }
 

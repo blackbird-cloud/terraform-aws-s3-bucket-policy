@@ -20,3 +20,15 @@ variable "attach_lb_log_delivery_policy" {
   type        = bool
   default     = false
 }
+
+variable "attach_require_latest_tls_policy" {
+  type        = bool
+  default     = true
+  description = "Attach a policy that will deny requests that use a TLS version lower then 1.2."
+}
+
+variable "attach_deny_insecure_transport_policy" {
+  type        = bool
+  default     = true
+  description = "Attach a policy that will deny requests that have no secure transport."
+}
