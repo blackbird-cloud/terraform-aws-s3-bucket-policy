@@ -14,10 +14,9 @@ sections:
     - modules
 
 content: |-
-  {{ .Header }}
+  {{ include "./.config/title.md"}}
 
-  # AWS S3 bucket policy module.
-  A Terraform module which helps you configure an access policy for your S3 bucket. Read [this](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-policies.html) page for more information.
+  {{ .Header }}
 
   ## Example
   ```hcl
